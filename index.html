@@ -1,0 +1,453 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Sophia Sirko-Galouchenko</title>
+  <meta name="description" content="Sophia Sirko-Galouchenko, PhD student in computer vision at Sorbonne Université (ISIR) and valeo.ai.">
+  <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>🔭</text></svg>">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link href="https://fonts.googleapis.com/css2?family=Lato:wght@400;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.6.0/css/all.min.css">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/academicons/1.9.4/css/academicons.min.css">
+  <script>
+    // restore the theme chosen with the toggle button (if any) before the page paints
+    try {
+      var saved = localStorage.getItem('theme');
+      if (saved === 'light' || saved === 'dark') document.documentElement.setAttribute('data-theme', saved);
+    } catch (e) {}
+  </script>
+  <style>
+    :root {
+      --bg: #ffffff;
+      --text: #1f2328;
+      --muted: #5b6470;
+      --accent: #2d6cb5;
+      --accent-hover: #1d4f8c;
+      --rule: #e3e6ea;
+      --highlight: #fff7e0;
+      --badge-bg: #eef3fa;
+      --button-bg: #f2f3f5;
+      --button-hover: #e4e7eb;
+      --venue: #a8461a;
+    }
+    @media (prefers-color-scheme: dark) {
+      :root:not([data-theme="light"]) {
+        --bg: #16181c;
+        --text: #e6e8eb;
+        --muted: #a0a8b3;
+        --accent: #7fb0ec;
+        --accent-hover: #a9caf3;
+        --rule: #2c3036;
+        --highlight: #2a2618;
+        --badge-bg: #222a35;
+        --button-bg: #23272d;
+        --button-hover: #2e333a;
+        --venue: #f0a374;
+      }
+    }
+    :root[data-theme="dark"] {
+      --bg: #16181c;
+      --text: #e6e8eb;
+      --muted: #a0a8b3;
+      --accent: #7fb0ec;
+      --accent-hover: #a9caf3;
+      --rule: #2c3036;
+      --highlight: #2a2618;
+      --badge-bg: #222a35;
+      --button-bg: #23272d;
+      --button-hover: #2e333a;
+      --venue: #f0a374;
+    }
+
+    * { box-sizing: border-box; }
+    body {
+      margin: 0;
+      background: var(--bg);
+      color: var(--text);
+      font-family: "Lato", "Helvetica Neue", Arial, sans-serif;
+      font-size: 16px;
+      line-height: 1.6;
+    }
+    a { color: var(--accent); text-decoration: none; }
+    a:hover { color: var(--accent-hover); text-decoration: underline; }
+
+    main { max-width: 900px; margin: 0 auto; padding: 96px 24px 80px; }
+
+    /* header: bio on the left, photo on the right */
+    /* light / dark toggle, top right corner */
+    .theme-toggle {
+      position: fixed; top: 16px; right: 16px; z-index: 10;
+      width: 38px; height: 38px; border-radius: 50%;
+      display: inline-flex; align-items: center; justify-content: center;
+      border: 1px solid var(--rule); background: var(--bg); color: var(--muted);
+      font-size: 1rem; cursor: pointer; transition: background 0.15s, color 0.15s;
+    }
+    .theme-toggle:hover { background: var(--button-bg); color: var(--text); }
+    .theme-toggle .fa-sun { display: none; }
+    .is-dark .theme-toggle .fa-sun { display: inline; }
+    .is-dark .theme-toggle .fa-moon { display: none; }
+
+    /* header: name with the photo under it on the left, bio on the right */
+    .intro { display: flex; gap: 48px; align-items: center; padding-bottom: 8px; }
+    .intro-side {
+      width: 260px; flex-shrink: 0;
+      display: flex; flex-direction: column; align-items: center; gap: 18px;
+    }
+    .intro-text { flex: 1; min-width: 0; }
+    h1 { font-size: 1.85rem; font-weight: 400; line-height: 1.2; letter-spacing: -0.01em; margin: 0; text-align: center; }
+    .role { margin: -10px 0 0; font-size: 0.9rem; color: var(--muted); text-align: center; line-height: 1.4; }
+    .nowrap { white-space: nowrap; }
+    .intro-text p { margin: 0 0 14px; }
+    /* contact links as light grey buttons: icon + name */
+    .links {
+      display: flex; flex-wrap: wrap; justify-content: flex-start; gap: 4px;
+      margin-top: 18px;
+    }
+    .links a {
+      display: inline-flex; align-items: center; gap: 4px;
+      padding: 3px 8px; border-radius: 6px;
+      background: var(--button-bg); color: var(--text);
+      font-size: 0.8rem; white-space: nowrap;
+      transition: background 0.15s;
+    }
+    .links a:hover { background: var(--button-hover); color: var(--text); text-decoration: none; }
+    .links i { width: 1em; text-align: center; color: var(--muted); }
+    .photo {
+      width: 220px; height: 220px; flex-shrink: 0;
+      border-radius: 50%; object-fit: cover;
+      background: var(--rule);
+    }
+
+    h2 {
+      font-size: 1.9rem; font-weight: 700; letter-spacing: -0.01em;
+      margin: 64px 0 20px; padding-bottom: 8px;
+      border-bottom: 1px solid var(--rule);
+    }
+
+    /* news */
+    /* news: a timeline, date pill on the left, a dot on a thin vertical line, text on the right;
+       older items behind "Show more" */
+    .news { list-style: none; padding: 0; margin: 0; position: relative; }
+    .news::before {
+      content: ""; position: absolute; top: 10px; bottom: 10px; left: 103px;
+      width: 2px; background: var(--rule); border-radius: 1px;
+    }
+    .news li {
+      position: relative; display: grid; grid-template-columns: 88px 1fr; column-gap: 34px;
+      align-items: baseline; padding: 9px 0;
+    }
+    .news li::before {
+      content: ""; position: absolute; left: 99px; top: 17px;
+      width: 10px; height: 10px; border-radius: 50%;
+      background: var(--bg); border: 2px solid var(--accent); box-sizing: border-box;
+    }
+    .news li:first-child::before { background: var(--accent); }
+    .news .date {
+      justify-self: end; white-space: nowrap;
+      font-size: 0.78rem; font-weight: 700; letter-spacing: 0.02em; text-transform: uppercase;
+      color: var(--muted);
+    }
+    .news li.older[hidden] { display: none; }
+    .eiffel { width: 0.85em; height: 1.1em; vertical-align: -0.15em; fill: var(--venue); }
+    .news-toggle {
+      margin: 10px 0 0 122px;
+      display: inline-flex; align-items: center; gap: 6px;
+      padding: 3px 12px; border: 1px solid var(--rule); border-radius: 999px;
+      background: var(--bg); color: var(--muted);
+      font: inherit; font-size: 0.82rem; cursor: pointer;
+      transition: background 0.15s, color 0.15s;
+    }
+    .news-toggle:hover { background: var(--button-bg); color: var(--text); }
+
+    /* publications: teaser on the left, text on the right */
+    .pub { display: flex; gap: 28px; padding: 20px; margin: 0 -20px 12px; border-radius: 10px; }
+    .pub.featured { background: var(--highlight); }
+    .pub img {
+      width: 240px; flex-shrink: 0; align-self: flex-start;
+      border-radius: 4px; background: #fff;
+    }
+    .pub-text { min-width: 0; }
+    .pub-title { font-weight: 700; display: block; margin-bottom: 2px; }
+    .pub-authors { display: block; }
+    .pub-authors .me { font-weight: 700; }
+    .pub-venue { display: block; font-weight: 700; color: var(--venue); }
+    /* paper links as small outlined buttons: icon + name */
+    .pub-links { display: flex; flex-wrap: wrap; gap: 6px; margin: 8px 0 10px; }
+    .pub-links a, .bib-toggle {
+      display: inline-flex; align-items: center; gap: 6px;
+      padding: 2px 10px; border: 1px solid var(--rule); border-radius: 6px;
+      background: var(--bg); color: var(--text);
+      font: inherit; font-size: 0.85rem; line-height: 1.6; cursor: pointer;
+      transition: background 0.15s, border-color 0.15s;
+    }
+    .pub-links a:hover, .bib-toggle:hover, .bib-toggle[aria-expanded="true"] {
+      background: var(--button-bg); border-color: var(--muted); color: var(--text); text-decoration: none;
+    }
+    .pub-links i, .pub-links .emoji { color: var(--muted); }
+    .bib-copy {
+      font: inherit; color: var(--accent); background: none; border: 0; padding: 0; cursor: pointer;
+    }
+    .bib-copy:hover { color: var(--accent-hover); text-decoration: underline; }
+    .bibtex { position: relative; margin-top: 10px; }
+    .bibtex pre {
+      margin: 0; padding: 12px 14px; overflow-x: auto;
+      background: var(--button-bg); border-radius: 6px;
+      font-size: 0.8rem; line-height: 1.45; color: var(--text);
+    }
+    .bib-copy { position: absolute; top: 6px; right: 10px; font-size: 0.8rem; }
+    .pub p { margin: 0; color: var(--muted); font-size: 0.95rem; }
+    .badge {
+      display: inline-block; font-size: 0.78rem; font-style: normal; font-weight: 700;
+      padding: 0 8px; margin-left: 6px; border-radius: 10px;
+      background: var(--badge-bg); color: var(--accent);
+    }
+
+    .misc { padding-left: 20px; margin: 0; }
+    .misc li { margin-bottom: 4px; }
+
+    footer {
+      margin-top: 48px; padding-top: 12px; border-top: 1px solid var(--rule);
+      font-size: 0.85rem; color: var(--muted); text-align: right;
+    }
+
+    @media (max-width: 640px) {
+      main { padding: 40px 20px 48px; }
+      h2 { margin-top: 44px; }
+      .news::before { left: 5px; }
+      .news li { grid-template-columns: 1fr; padding: 6px 0 6px 24px; }
+      .news li::before { left: 1px; top: 12px; }
+      .news .date { justify-self: start; }
+      .news-toggle { margin-left: 24px; }
+      .intro { flex-direction: column; gap: 20px; }
+      .intro-side { width: auto; }
+      .photo { width: 160px; height: 160px; }
+      .pub { flex-direction: column; gap: 12px; padding: 14px; margin: 0 -14px 10px; }
+      .pub img { width: 100%; }
+    }
+  </style>
+</head>
+<body>
+<button type="button" class="theme-toggle" aria-label="Switch between light and dark mode">
+  <i class="fa-solid fa-moon" aria-hidden="true"></i><i class="fa-solid fa-sun" aria-hidden="true"></i>
+</button>
+<main>
+
+  <section class="intro">
+    <div class="intro-side">
+      <img class="photo" src="images/sophia.jpg" alt="Photo of Sophia Sirko-Galouchenko">
+      <h1>Sophia<br><span class="nowrap">Sirko-Galouchenko</span></h1>
+      <p class="role">PhD student in computer vision<br>Sorbonne Université &amp; valeo.ai</p>
+    </div>
+    <div class="intro-text">
+      <p>
+        I am a PhD student in the <a href="https://www.isir.upmc.fr/equipes/mlia/">MLIA team</a> at <a href="https://www.isir.upmc.fr/">Sorbonne Université (ISIR)</a>
+        and <a href="https://valeoai.github.io/">valeo.ai</a> in Paris, supervised by
+        <a href="https://thome.isir.upmc.fr/">Nicolas Thome</a>, <a href="https://abursuc.github.io/">Andrei Bursuc</a> and
+        <a href="https://gidariss.github.io/">Spyros Gidaris</a>.
+      </p>
+      <p>
+        My research focuses on using self-supervised learning (SSL) to improve fine-grained image understanding
+        in vision models and multimodal LLMs.
+      </p>
+      <p>
+        Before my PhD, I graduated from the <a href="https://www.master-mva.com/">MVA Master's</a>
+        (Mathématiques, Vision et Apprentissage) at ENS Paris-Saclay, and I got a Bachelor's degree
+        in computer science and mathematics from Université Paris Dauphine.
+      </p>
+      <nav class="links" aria-label="Contact and profiles">
+        <a href="mailto:sophia.sirko.galouchenko@gmail.com"><i class="fa-solid fa-envelope" aria-hidden="true"></i>Email</a>
+        <a href="Sophia_Sirko-Galouchenko_CV.pdf"><i class="fa-solid fa-file-pdf" aria-hidden="true"></i>CV</a>
+        <a href="https://scholar.google.com/citations?user=3ac3PQMAAAAJ"><i class="ai ai-google-scholar" aria-hidden="true"></i>Scholar</a>
+        <a href="https://github.com/sirkosophia"><i class="fa-brands fa-github" aria-hidden="true"></i>GitHub</a>
+        <a href="https://www.linkedin.com/in/sophia-sirko-galouchenko/"><i class="fa-brands fa-linkedin" aria-hidden="true"></i>LinkedIn</a>
+        <a href="https://x.com/sophia_sirko"><i class="fa-brands fa-x-twitter" aria-hidden="true"></i>X</a>
+        <a href="https://bsky.app/profile/ssirko.bsky.social"><i class="fa-brands fa-bluesky" aria-hidden="true"></i>Bluesky</a>
+      </nav>
+    </div>
+  </section>
+
+  <h2>News</h2>
+  <ul class="news">
+    <li><span class="date">Dec 2026</span><span>Presenting <a href="https://arxiv.org/abs/2604.12966">V-GIFT</a> at NeurIPS 2026 in Paris. See you there! <svg class="eiffel" viewBox="0 0 24 32" aria-hidden="true" focusable="false"><path d="M11.4 0h1.2v3h.6l.5 5h-1v.8h.9l1 6.2h1.4v1.3h-1.1l1.6 5.2h1.6v1.5h-1.2C18.7 27 20.5 30 22 32h-5c-.8-2.8-2.6-4.6-5-4.6S7.8 29.2 7 32H2c1.5-2 3.3-5 4.1-9h-1.2v-1.5h1.6l1.6-5.2H7v-1.3h1.4l1-6.2h.9V8h-1l.5-5h.6zM10.6 16.3l-1.2 5.2h5.2l-1.2-5.2z"/></svg></span></li>
+    <li><span class="date">Oct 2026</span><span><a href="https://arxiv.org/abs/2610.02117">Where-OPD</a> is out on arXiv, along with its <a href="https://github.com/sirkosophia/Where-OPD">code</a> and <a href="https://huggingface.co/SophiaSirko/WhereOPD-Qwen3.5-9B">models</a> 🚀!</span></li>
+    <li><span class="date">2026</span><span><a href="https://arxiv.org/abs/2604.12966">V-GIFT</a> is accepted to NeurIPS 2026 🥳!</span></li>
+    <li class="older" hidden><span class="date">Oct 2025</span><span>Presented <a href="https://arxiv.org/abs/2506.18463">DIP</a> at ICCV 2025 in Honolulu, Hawaii 🌺</span></li>
+    <li class="older" hidden><span class="date">2025</span><span><a href="https://arxiv.org/abs/2506.18463">DIP</a> is accepted to ICCV 2025. See you in Hawaii ✨!</span></li>
+    <li class="older" hidden><span class="date">2024</span><span><a href="https://arxiv.org/abs/2404.14027">OccFeat</a> is accepted to the CVPR 2024 Workshop on Autonomous Driving 🚗</span></li>
+  </ul>
+  <button type="button" class="news-toggle" aria-expanded="false">Show more</button>
+
+  <h2>Publications</h2>
+
+  <div class="pub featured">
+    <img src="images/whereopd.jpg" alt="Where-OPD teaser figure" loading="lazy">
+    <div class="pub-text">
+      <a class="pub-title" href="https://arxiv.org/abs/2610.02117">Where-OPD: Spatially Guided On-Policy Self-Distillation of MLLMs with Synthetic Scenes</a>
+      <span class="pub-authors"><span class="me">Sophia Sirko-Galouchenko</span>,
+        <a href="https://wysoczanska.github.io/">Monika Wysoczańska</a>,
+        <a href="https://abursuc.github.io/">Andrei Bursuc</a>,
+        <a href="https://thome.isir.upmc.fr/">Nicolas Thome</a>,
+        <a href="https://gidariss.github.io/">Spyros Gidaris</a></span>
+      <span class="pub-venue">arXiv, 2026</span>
+      <span class="pub-links">
+        <a href="https://arxiv.org/abs/2610.02117"><i class="ai ai-arxiv" aria-hidden="true"></i>arXiv</a>
+        <a href="https://github.com/sirkosophia/Where-OPD"><i class="fa-brands fa-github" aria-hidden="true"></i>Code</a>
+        <a href="https://huggingface.co/SophiaSirko/WhereOPD-Qwen3.5-9B"><span class="emoji" aria-hidden="true">🤗</span>Models</a>
+        <button type="button" class="bib-toggle" aria-expanded="false"><i class="fa-solid fa-quote-right" aria-hidden="true"></i>BibTeX</button>
+      </span>
+      <p>On-policy self-distillation using synthetic scenes and visually grounded textual hints improves visual perception.</p>
+      <div class="bibtex" hidden><button type="button" class="bib-copy">copy</button><pre>@article{sirko2026opd,
+  title={Where-OPD: Spatially Guided On-Policy Self-Distillation of MLLMs with Synthetic Scenes},
+  author={Sirko-Galouchenko, Sophia and Wysoczanska, Monika and Bursuc, Andrei and Thome, Nicolas and Gidaris, Spyros},
+  journal={arXiv preprint arXiv:2610.02117},
+  year={2026}
+}</pre></div>
+    </div>
+  </div>
+
+  <div class="pub featured">
+    <img src="images/vgift.jpg" alt="V-GIFT teaser figure" loading="lazy">
+    <div class="pub-text">
+      <a class="pub-title" href="https://arxiv.org/abs/2604.12966">V-GIFT: Boosting Visual Instruction Tuning with Self-Supervised Guidance</a>
+      <span class="pub-authors"><span class="me">Sophia Sirko-Galouchenko</span>,
+        <a href="https://wysoczanska.github.io/">Monika Wysoczańska</a>,
+        <a href="https://abursuc.github.io/">Andrei Bursuc</a>,
+        <a href="https://thome.isir.upmc.fr/">Nicolas Thome</a>,
+        <a href="https://gidariss.github.io/">Spyros Gidaris</a></span>
+      <span class="pub-venue">NeurIPS, 2026</span>
+      <span class="pub-links">
+        <a href="https://arxiv.org/abs/2604.12966"><i class="ai ai-arxiv" aria-hidden="true"></i>arXiv</a>
+        <a href="https://github.com/sirkosophia/V-GIFT"><i class="fa-brands fa-github" aria-hidden="true"></i>Code</a>
+        <a href="https://huggingface.co/SophiaSirko/V-GIFT_llava_v1.5_vicuna7b"><span class="emoji" aria-hidden="true">🤗</span>Models</a>
+        <button type="button" class="bib-toggle" aria-expanded="false"><i class="fa-solid fa-quote-right" aria-hidden="true"></i>BibTeX</button>
+      </span>
+      <p>SSL tasks are turned into visual instruction tuning data for MLLMs and added during the instruction tuning stage. Even a small amount of visually grounded SSL-style supervision can go a long way toward unlocking better visual capabilities in MLLMs.</p>
+      <div class="bibtex" hidden><button type="button" class="bib-copy">copy</button><pre>@article{sirko2026boosting,
+  title={Boosting Visual Instruction Tuning with Self-Supervised Guidance},
+  author={Sirko-Galouchenko, Sophia and Wysoczanska, Monika and Bursuc, Andrei and Thome, Nicolas and Gidaris, Spyros},
+  journal={arXiv preprint arXiv:2604.12966},
+  year={2026}
+}</pre></div>
+    </div>
+  </div>
+
+  <div class="pub">
+    <img src="images/dip.jpg" alt="DIP method overview figure" loading="lazy">
+    <div class="pub-text">
+      <a class="pub-title" href="https://arxiv.org/abs/2506.18463">DIP: Unsupervised Dense In-Context Post-training of Visual Representations</a>
+      <span class="pub-authors"><span class="me">Sophia Sirko-Galouchenko</span>,
+        <a href="https://gidariss.github.io/">Spyros Gidaris</a>,
+        <a href="https://vobecant.github.io/">Antonin Vobecky</a>,
+        <a href="https://abursuc.github.io/">Andrei Bursuc</a>,
+        <a href="https://thome.isir.upmc.fr/">Nicolas Thome</a></span>
+      <span class="pub-venue">ICCV, 2025</span>
+      <span class="pub-links">
+        <a href="https://arxiv.org/abs/2506.18463"><i class="ai ai-arxiv" aria-hidden="true"></i>arXiv</a>
+        <a href="https://github.com/sirkosophia/DIP"><i class="fa-brands fa-github" aria-hidden="true"></i>Code</a>
+        <button type="button" class="bib-toggle" aria-expanded="false"><i class="fa-solid fa-quote-right" aria-hidden="true"></i>BibTeX</button>
+      </span>
+      <p>Unsupervised post-training that improves dense in-context scene understanding over DINOv2.</p>
+      <div class="bibtex" hidden><button type="button" class="bib-copy">copy</button><pre>@inproceedings{sirko2025dip,
+  title={Dip: Unsupervised dense in-context post-training of visual representations},
+  author={Sirko-Galouchenko, Sophia and Gidaris, Spyros and Vobecky, Antonin and Bursuc, Andrei and Thome, Nicolas},
+  booktitle={2025 IEEE/CVF International Conference on Computer Vision (ICCV)},
+  pages={4264--4274},
+  year={2025},
+  organization={IEEE}
+}</pre></div>
+    </div>
+  </div>
+
+  <div class="pub">
+    <img src="images/occfeat.jpg" alt="OccFeat method overview figure" loading="lazy">
+    <div class="pub-text">
+      <a class="pub-title" href="https://arxiv.org/abs/2404.14027">OccFeat: Self-supervised Occupancy Feature Prediction for Pretraining BEV Segmentation Networks</a>
+      <span class="pub-authors"><span class="me">Sophia Sirko-Galouchenko</span>,
+        <a href="https://aboulch.github.io/">Alexandre Boulch</a>,
+        <a href="https://gidariss.github.io/">Spyros Gidaris</a>,
+        <a href="https://abursuc.github.io/">Andrei Bursuc</a>,
+        <a href="https://vobecant.github.io/">Antonin Vobecky</a>,
+        <a href="https://ptrckprz.github.io/">Patrick Pérez</a>,
+        <a href="https://imagine.enpc.fr/~marletr/">Renaud Marlet</a></span>
+      <span class="pub-venue">CVPR Workshop on Autonomous Driving, 2024</span>
+      <span class="pub-links">
+        <a href="https://arxiv.org/abs/2404.14027"><i class="ai ai-arxiv" aria-hidden="true"></i>arXiv</a>
+        <button type="button" class="bib-toggle" aria-expanded="false"><i class="fa-solid fa-quote-right" aria-hidden="true"></i>BibTeX</button>
+      </span>
+      <p>Self-supervised pretraining for bird's-eye-view networks in autonomous driving, combining occupancy prediction with distillation from DINO features.</p>
+      <div class="bibtex" hidden><button type="button" class="bib-copy">copy</button><pre>@inproceedings{sirko2024occfeat,
+  title={Occfeat: Self-supervised occupancy feature prediction for pretraining bev segmentation networks},
+  author={Sirko-Galouchenko, Sophia and Boulch, Alexandre and Gidaris, Spyros and Bursuc, Andrei and Vobecky, Antonin and P{\&#x27;e}rez, Patrick and Marlet, Renaud},
+  booktitle={2024 IEEE/CVF Conference on Computer Vision and Pattern Recognition Workshops (CVPRW)},
+  pages={4493--4503},
+  year={2024},
+  organization={IEEE}
+}</pre></div>
+    </div>
+  </div>
+
+  <!-- Service section, hidden for now: remove the comment markers to show it again
+  <h2>Service</h2>
+  <ul class="misc">
+    <li>Reviewer for ICCV 2025, NeurIPS 2025 and the CVPR 2024 Workshop on Autonomous Driving.</li>
+    <li>Student representative at valeo.ai, 2024&ndash;2025.</li>
+    <li>Volunteer at ICCV 2023, Paris.</li>
+  </ul>
+  -->
+
+
+</main>
+<script>
+  // light / dark toggle: starts from the saved choice, else the system setting
+  (function () {
+    var root = document.documentElement;
+    var btn = document.querySelector('.theme-toggle');
+    var media = window.matchMedia('(prefers-color-scheme: dark)');
+    function isDark() {
+      var t = root.getAttribute('data-theme');
+      return t ? t === 'dark' : media.matches;
+    }
+    function render() { document.body.classList.toggle('is-dark', isDark()); }
+    btn.addEventListener('click', function () {
+      var next = isDark() ? 'light' : 'dark';
+      root.setAttribute('data-theme', next);
+      try { localStorage.setItem('theme', next); } catch (e) {}
+      render();
+    });
+    media.addEventListener('change', render);
+    render();
+  })();
+
+  // "Show more" reveals the older news items
+  document.querySelectorAll('.news-toggle').forEach(function (btn) {
+    btn.addEventListener('click', function () {
+      var open = btn.getAttribute('aria-expanded') === 'true';
+      document.querySelectorAll('.news li.older').forEach(function (li) { li.hidden = open; });
+      btn.setAttribute('aria-expanded', String(!open));
+      btn.textContent = open ? 'Show more' : 'Show less';
+    });
+  });
+
+  // "bib" shows or hides the BibTeX entry of its publication; "copy" puts it on the clipboard
+  document.querySelectorAll('.bib-toggle').forEach(function (btn) {
+    btn.addEventListener('click', function () {
+      var box = btn.closest('.pub-text').querySelector('.bibtex');
+      box.hidden = !box.hidden;
+      btn.setAttribute('aria-expanded', String(!box.hidden));
+    });
+  });
+  document.querySelectorAll('.bib-copy').forEach(function (btn) {
+    btn.addEventListener('click', function () {
+      var text = btn.parentElement.querySelector('pre').textContent;
+      try {
+        navigator.clipboard.writeText(text).then(function () {
+          btn.textContent = 'copied';
+          setTimeout(function () { btn.textContent = 'copy'; }, 1500);
+        });
+      } catch (e) { /* clipboard unavailable: the entry can still be selected by hand */ }
+    });
+  });
+</script>
+</body>
+</html>
